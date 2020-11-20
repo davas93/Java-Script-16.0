@@ -1,20 +1,18 @@
-let money = 1000000;
-let income = 500000;
-let addExpenses = 200000;
-let deposit = 100000;
-let mission = 'Заработать 2000000';
-let period = 'до 31 декабря';
+let money = 40000;
+let income = "Сторонние проекты";
+let addExpenses = "Продукты, Интернет, Кварплата";
+let deposit = true;
+let mission = 200000;
+let period = 5;
 
-alert(money);
-alert(income);
-alert(addExpenses);
-alert(deposit);
-alert(mission);
-alert(period);
+console.log(typeof money);
+console.log(typeof income);
+console.log(typeof deposit);
+console.log(addExpenses.length);
+console.log("Период равен " + period + " месяцев");
+console.log("Цель заработать " + mission + " рублей");
+console.log(addExpenses.toLowerCase());
+console.log(addExpenses.split(", "));
 
-console.log(money);
-console.log(income);
-console.log(addExpenses);
-console.log(deposit);
-console.log(mission);
-console.log(period);
+let budgetDay = 40000 / 30;
+console.log(budgetDay);
