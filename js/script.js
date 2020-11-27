@@ -10,9 +10,6 @@ let money,
       money = prompt("Ваш месячный доход?");
     } while (!isNumber(money));
   },
-  showTypeOf = function (item) {
-    console.log(typeof item);
-  },
   getExpensesMonth = function () {
     let sum = 0;
 
@@ -32,6 +29,10 @@ let money,
 start();
 
 let appData = {
+  budget: money,
+  budgetDay: 0,
+  budgetMonth: 0,
+  expensesMonth: 0,
   income: {},
   addIncome: [],
   expenses: {},
@@ -42,13 +43,9 @@ let appData = {
   asking: function () {
     let addExpenses = prompt("Перечислите возможные расходы через запятую?");
     appData.addExpenses = addExpenses.toLowerCase().split(",");
-    app.Data.deposit = confirm("Есть ли у Вас депозит в банке");
+    appData.deposit = confirm("Есть ли у Вас депозит в банке");
   },
 };
-
-showTypeOf(money);
-showTypeOf(appData.income);
-showTypeOf(appData.deposit);
 
 let expensesAmonth = getExpensesMonth();
 
