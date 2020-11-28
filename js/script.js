@@ -29,15 +29,16 @@ let appData = {
     let sum = 0;
 
     for (let i = 0; i < 2; i++) {
-      expenses[i] = prompt("Введите обязательную статью расходов");
+      let currentExpenseName = prompt("Введите обязательную статью расходов");
 
-      let checkNumber;
-
+      let expenseValue;
       do {
-        checkNumber = prompt("Во сколко это обойдется?");
-      } while (!isNumber(checkNumber));
-      sum += +checkNumber;
+        expenseValue = prompt("Во сколко это обойдется?");
+      } while (!isNumber(expenseValue));
+      expenses[currentExpenseName] = parseFloat(expenseValue);
+      sum += expenses[currentExpenseName];
     }
+    console.log(expenses);
     return sum;
   },
   getAccumulatedMonth: function () {
