@@ -72,6 +72,7 @@ let appData = {
     appData.deposit = confirm("Есть ли у Вас депозит в банке");
   },
 };
+appData.asking();
 
 let expensesAmonth = appData.getExpensesMonth();
 
