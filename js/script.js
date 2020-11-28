@@ -1,7 +1,6 @@
 "use strict";
 
 let money,
-  expenses = [],
   isNumber = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   },
@@ -31,11 +30,11 @@ let appData = {
     }
   },
   getBudget: function () {
-    appData.budgetMonth = appData.budget - appData.getExpensesMonth();
+    appData.budgetMonth = appData.budget - appData.expensesMonth;
     appData.budgetDay = appData.budgetMonth / 30;
   },
   /*getTargetMonth: function () {
-    let target = appData.mission / accumulatedMonth;
+    let target = appData.mission / appData.budgetMonth;
     if (target < 0) {
       console.log("Цель не будет достигнута");
     } else {
@@ -45,11 +44,11 @@ let appData = {
     }
   },
   getStatusIncome: function () {
-    if (budgetDay <= 0) {
+    if (appData.budgetDay <= 0) {
       return "Что-то пошло не так";
-    } else if (budgetDay < 600) {
+    } else if (appData.budgetDay < 600) {
       return "К сожалению у вас уровень дохода ниже среднего";
-    } else if (budgetDay <= 1200) {
+    } else if (appData.budgetDay <= 1200) {
       return "У вас средний уровень дохода";
     } else {
       return "У вас высокий уровень дохода";
@@ -65,14 +64,15 @@ let appData = {
 
       let expenseValue;
       do {
-        expenseValue = +prompt("Во сколко это обойдется?");
+        expenseValue = prompt("Во сколко это обойдется?");
       } while (!isNumber(expenseValue));
       appData.expenses[currentExpenseName] = parseFloat(expenseValue);
     }
     console.log(appData.expenses);
   },
 };
+appData.asking();
+console.log(typeof appData.budgetDay);
 appData.getExpensesMonth();
 appData.getBudget();
-appData.asking();
 console.log(appData);
