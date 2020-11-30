@@ -77,6 +77,7 @@ let appData = {
     let addExpenses = prompt("Перечислите возможные расходы через запятую?");
     appData.addExpenses = addExpenses.toLowerCase().split(",");
     appData.deposit = confirm("Есть ли у Вас депозит в банке");
+    appData.getInfoDeposit();
     for (let i = 0; i < 2; i++) {
       let currentExpenseName;
       do {
@@ -103,11 +104,19 @@ let appData = {
     return appData.budgetMonth * appData.period;
   },
 };
+
+let getUpperCase = function () {};
+
 appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
 appData.getTargetMonth();
 appData.getStatusIncome();
+console.log(
+  appData.addExpenses.join(", ").replace(/(^|\s)\S/g, function (a) {
+    return a.toUpperCase();
+  })
+);
 console.log("Расходы за месяц: " + appData.expensesMonth);
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
@@ -118,7 +127,6 @@ for (let key in appData) {
   );
 }
 
-appData.getInfoDeposit();
 console.log(
   appData.persentDeposit,
   appData.moneyDeposit,
