@@ -6,7 +6,7 @@ let money,
   },
   start = function () {
     do {
-      money = +prompt("Ваш месячный доход?");
+      money = prompt("Ваш месячный доход?");
     } while (!isNumber(money));
   };
 
@@ -61,7 +61,10 @@ let appData = {
         "Какой у вас дополнительный заработок?",
         "Cторонние проекты"
       );
-      let cashIncome = prompt("Сколько в месяц вы на этом зарабатываете?");
+      let cashIncome;
+      do {
+        cashIncome = prompt("Сколько в месяц вы на этом зарабатываете?");
+      } while (!isNumber(cashIncome));
       appData.income[itemIncome] = cashIncome;
     }
 
@@ -79,8 +82,12 @@ let appData = {
   },
   getInfoDeposit: function () {
     if (appData.deposit) {
-      appData.persentDeposit = prompt("Какой годовой процент?");
-      appData.moneyDeposit = prompt("Какая сумма заложена");
+      do {
+        appData.persentDeposit = prompt("Какой годовой процент?");
+      } while (!isNumber(this.persentDeposit));
+      do {
+        appData.moneyDeposit = prompt("Какая сумма заложена");
+      } while (!isNumber(this.moneyDeposit));
     }
   },
   calcSavedMoney: function () {
