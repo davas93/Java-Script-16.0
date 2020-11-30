@@ -61,10 +61,7 @@ let appData = {
         "Какой у вас дополнительный заработок?",
         "Cторонние проекты"
       );
-      let cashIncome = prompt(
-        "Сколько в месяц вы на этом зарабатываете?",
-        "10000"
-      );
+      let cashIncome = prompt("Сколько в месяц вы на этом зарабатываете?");
       appData.income[itemIncome] = cashIncome;
     }
 
@@ -82,8 +79,8 @@ let appData = {
   },
   getInfoDeposit: function () {
     if (appData.deposit) {
-      appData.persentDeposit = prompt("Какой годовой процент?", 10);
-      appData.moneyDeposit = prompt("Какая сумма заложена", 10000);
+      appData.persentDeposit = prompt("Какой годовой процент?");
+      appData.moneyDeposit = prompt("Какая сумма заложена");
     }
   },
   calcSavedMoney: function () {
