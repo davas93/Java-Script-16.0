@@ -4,6 +4,9 @@ let money,
   isNumber = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   },
+  isString = function (n) {
+    return !isNaN(!parseFloat(n)) && isFinite(n);
+  },
   start = function () {
     do {
       money = prompt("Ваш месячный доход?");
@@ -57,10 +60,13 @@ let appData = {
 
   asking: function () {
     if (confirm("Есть ли у вас дополнительный источник заработка?")) {
-      let itemIncome = prompt(
-        "Какой у вас дополнительный заработок?",
-        "Cторонние проекты"
-      );
+      let itemIncome;
+      do {
+        itemIncome = prompt(
+          "Какой у вас дополнительный заработок?",
+          "Cторонние проекты"
+        );
+      } while (!!isString(itemIncome));
       let cashIncome;
       do {
         cashIncome = prompt("Сколько в месяц вы на этом зарабатываете?");
@@ -72,8 +78,11 @@ let appData = {
     appData.addExpenses = addExpenses.toLowerCase().split(",");
     appData.deposit = confirm("Есть ли у Вас депозит в банке");
     for (let i = 0; i < 2; i++) {
-      let currentExpenseName = prompt("Введите обязательную статью расходов"),
-        expenseValue;
+      let currentExpenseName;
+      do {
+        currentExpenseName = prompt("Введите обязательную статью расходов");
+      } while (!!isString(currentExpenseName));
+      let expenseValue;
       do {
         expenseValue = prompt("Во сколко это обойдется?");
       } while (!isNumber(expenseValue));
