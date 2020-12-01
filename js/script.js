@@ -1,6 +1,56 @@
 "use strict";
 
-let money,
+let calculateBtn = document.getElementById("start"),
+  incomeAddBtn = document.getElementsByTagName("button")[0],
+  expensesAddBtn = document.getElementsByTagName("button")[1],
+  depositCheck = document.querySelector("#deposit-check"),
+  incomeInputs = document.querySelectorAll(".additional_income-item"),
+  budgetDayValue = document.getElementsByClassName("budget_day-value"),
+  expensesMonthValue = document.getElementsByClassName("expenses_month-value"),
+  additionalIncomeValue = document.getElementsByClassName(
+    "additional_income-value"
+  ),
+  additionalExpensesValue = document.getElementsByClassName(
+    "additional_expenses-value"
+  ),
+  incomePeriodValue = document.getElementsByClassName("income_period-value"),
+  targetMonthValue = document.getElementsByClassName("target_month-value"),
+  budgetMonthValue = document.querySelector(".budget_month-value"),
+  incomeMonthInput = document.querySelector(".salary-amount"),
+  incomeNameInput = document.querySelector(".income-title"),
+  incomeAmountInput = document.querySelector(".income-amount"),
+  expensesNameInput = document.querySelector(".expenses-title"),
+  expensesAmountInput = document.querySelector(".expenses-amount"),
+  additionalExpensesInput = document.querySelector(".additional_expenses-item"),
+  targetAmountInput = document.querySelector(".target-amount"),
+  periodSelect = document.querySelector(".period-select"),
+  periodNum = document.querySelector("period-amount");
+
+console.log(
+  calculateBtn,
+  incomeAddBtn,
+  expensesAddBtn,
+  depositCheck,
+  incomeInputs,
+  budgetDayValue,
+  expensesMonthValue,
+  additionalIncomeValue,
+  additionalExpensesValue,
+  incomePeriodValue,
+  targetMonthValue,
+  budgetMonthValue,
+  incomeMonthInput,
+  incomeNameInput,
+  incomeAmountInput,
+  expensesNameInput,
+  expensesAmountInput,
+  additionalExpensesInput,
+  targetAmountInput,
+  periodSelect,
+  periodNum
+);
+
+/*let money,
   isNumber = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   },
@@ -131,4 +181,4 @@ console.log(
   appData.persentDeposit,
   appData.moneyDeposit,
   appData.calcSavedMoney()
-);
+);*/
