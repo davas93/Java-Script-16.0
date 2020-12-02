@@ -5,6 +5,7 @@ const books = document.querySelector(".books");
 const body = document.querySelector("body");
 const titleBook3 = book[4].querySelector("a");
 const adv = document.querySelector(".adv");
+const items = books.querySelectorAll("li");
 
 //Переставляем книги
 books.prepend(book[1]);
@@ -20,4 +21,14 @@ titleBook3.textContent = "Книга 3. this и Прототипы Объект�
 //Удаляем рекламу
 adv.remove();
 
-console.log(adv);
+//Порядок глав
+items[3].after(items[6]);
+items[6].after(items[8]);
+items[9].after(items[2]);
+items[48].before(items[50]);
+items[50].before(items[49]);
+items[49].before(items[55]);
+items[53].after(items[51]);
+
+console.log(lists);
+console.log(items);
