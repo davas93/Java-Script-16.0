@@ -30,5 +30,5 @@ items[50].before(items[49]);
 items[49].before(items[55]);
 items[53].after(items[51]);
 
-console.log(lists);
-console.log(items);
+//Добавляем главу
+items[25].insertAdjacentHTML("afterend", "<li>Глава 8: За пределами ES6</li>");
