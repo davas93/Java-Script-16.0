@@ -4,6 +4,7 @@ const book = document.querySelectorAll(".book");
 const books = document.querySelector(".books");
 const body = document.querySelector("body");
 const titleBook3 = book[4].querySelector("a");
+const adv = document.querySelector(".adv");
 
 //Переставляем книги
 books.prepend(book[1]);
@@ -16,4 +17,7 @@ body.style.backgroundImage = "url(./image/you-dont-know-js.jpg)";
 //Исправляем заголовок
 titleBook3.textContent = "Книга 3. this и Прототипы Объектов";
 
-console.log(titleBook3);
+//Удаляем рекламу
+adv.remove();
+
+console.log(adv);
