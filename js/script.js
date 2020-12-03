@@ -44,6 +44,13 @@ let checkInput = function (e) {
 };
 incomeMonthInput.addEventListener("keyup", checkInput);
 
+//Запреты на ввод
+let inputsSum = document.querySelectorAll("[placeholder = 'Сумма']");
+console.log("inputsSum: ", inputsSum);
+inputsSum.forEach(function (item) {
+  item.oninput = (e) => (e.target.value = e.target.value.replace(/\D/g, ""));
+});
+
 /* let isNumber = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   },
