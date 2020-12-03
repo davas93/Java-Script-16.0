@@ -21,6 +21,7 @@ let calculateBtn = document.getElementById("start"),
   incomeMonthInput = document.querySelector(".salary-amount"),
   incomeNameInput = document.querySelector(".income-title"),
   expensesNameInput = document.querySelector(".expenses-title"),
+  incomeItems = document.querySelectorAll(".income-items"),
   expensesItems = document.querySelectorAll(".expenses-items"),
   additionalExpensesInput = document.querySelector(".additional_expenses-item"),
   targetAmountInput = document.querySelector(".target-amount"),
@@ -119,6 +120,15 @@ let appData = {
       }
     });
   },
+  addIncomeBlock: function () {
+    let cloneIncomeItem = incomeItems[0].cloneNode(true);
+    incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomeAddBtn);
+    incomeItems = document.querySelectorAll(".income-items");
+
+    if (incomeItems.length === 3) {
+      incomeAddBtn.style.display = "none";
+    }
+  },
   getIncome: function () {
     if (confirm("Есть ли у вас дополнительный источник заработка?")) {
       let itemIncome;
@@ -175,6 +185,7 @@ let getUpperCase = function () {};
 
 calculateBtn.addEventListener("click", appData.start);
 expensesAddBtn.addEventListener("click", appData.addExpensesBlock);
+incomeAddBtn.addEventListener("click", appData.addIncomeBlock);
 
 console.log(
   appData.addExpenses.join(", ").replace(/(^|\s)\S/g, function (a) {
