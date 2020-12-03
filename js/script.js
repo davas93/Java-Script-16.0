@@ -6,7 +6,9 @@ let calculateBtn = document.getElementById("start"),
   depositCheck = document.querySelector("#deposit-check"),
   incomeInputs = document.querySelectorAll(".additional_income-item"),
   budgetDayValue = document.getElementsByClassName("budget_day-value")[0],
-  expensesMonthValue = document.getElementsByClassName("expenses_month-value")[0],
+  expensesMonthValue = document.getElementsByClassName(
+    "expenses_month-value"
+  )[0],
   additionalIncomeValue = document.getElementsByClassName(
     "additional_income-value"
   )[0],
@@ -50,20 +52,13 @@ console.log(
   periodNum
 );
 
-/*let money,
+let money,
   isNumber = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   },
   isString = function (n) {
     return !isNaN(!parseFloat(n)) && isFinite(n);
-  },
-  start = function () {
-    do {
-      money = prompt("Ваш месячный доход?");
-    } while (!isNumber(money));
   };
-
-start();
 
 let appData = {
   budget: money,
@@ -107,7 +102,11 @@ let appData = {
       return "У вас высокий уровень дохода";
     }
   },
-
+  start: function () {
+    do {
+      money = prompt("Ваш месячный доход?");
+    } while (!isNumber(money));
+  },
   asking: function () {
     if (confirm("Есть ли у вас дополнительный источник заработка?")) {
       let itemIncome;
@@ -181,4 +180,4 @@ console.log(
   appData.persentDeposit,
   appData.moneyDeposit,
   appData.calcSavedMoney()
-);*/
+);
