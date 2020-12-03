@@ -20,36 +20,13 @@ let calculateBtn = document.getElementById("start"),
   budgetMonthValue = document.querySelector(".budget_month-value"),
   incomeMonthInput = document.querySelector(".salary-amount"),
   incomeNameInput = document.querySelector(".income-title"),
-  incomeAmountInput = document.querySelector(".income-amount"),
   expensesNameInput = document.querySelector(".expenses-title"),
   expensesItems = document.querySelectorAll(".expenses-items"),
   additionalExpensesInput = document.querySelector(".additional_expenses-item"),
   targetAmountInput = document.querySelector(".target-amount"),
   periodSelect = document.querySelector(".period-select"),
-  periodNum = document.querySelector(".period-amount");
-
-console.log(
-  calculateBtn,
-  incomeAddBtn,
-  expensesAddBtn,
-  depositCheck,
-  incomeInputs,
-  budgetDayValue,
-  expensesMonthValue,
-  additionalIncomeValue,
-  additionalExpensesValue,
-  incomePeriodValue,
-  targetMonthValue,
-  budgetMonthValue,
-  incomeMonthInput,
-  incomeNameInput,
-  incomeAmountInput,
-  expensesNameInput,
-  additionalExpensesInput,
-  targetAmountInput,
-  periodSelect,
-  periodNum
-);
+  periodNum = document.querySelector(".period-amount"),
+  incomeItem = document.querySelectorAll(".income-items");
 
 let isNumber = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
@@ -64,6 +41,7 @@ let appData = {
   budgetMonth: 0,
   expensesMonth: 0,
   income: {},
+  incomeMonth: 0,
   addIncome: [],
   expenses: {},
   addExpenses: [],
@@ -77,7 +55,8 @@ let appData = {
     }
   },
   getBudget: function () {
-    appData.budgetMonth = appData.budget - appData.expensesMonth;
+    appData.budgetMonth =
+      appData.budget + appData.incomeMonth - appData.expensesMonth;
     appData.budgetDay = Math.floor(appData.budgetMonth / 30);
   },
   getTargetMonth: function () {
@@ -100,17 +79,17 @@ let appData = {
       return;
     }
 
-    appData.budget = incomeMonthInput.value;
+    appData.budget = +incomeMonthInput.value;
     console.log("incomeMonthInput.value: ", incomeMonthInput.value);
 
     appData.getExpenses();
-
+    appData.getIncome();
     appData.getExpensesMonth();
-    appData.getBudget();
     appData.getTargetMonth();
     appData.getStatusIncome();
     appData.getAddExpenses();
     appData.getAddIncome();
+    appData.getBudget();
     appData.showResult();
   },
   showResult: function () {
@@ -140,6 +119,26 @@ let appData = {
       }
     });
   },
+  getIncome: function () {
+    if (confirm("Есть ли у вас дополнительный источник заработка?")) {
+      let itemIncome;
+      do {
+        itemIncome = prompt(
+          "Какой у вас дополнительный заработок?",
+          "Cторонние проекты"
+        );
+      } while (!!isString(itemIncome));
+      let cashIncome;
+      do {
+        cashIncome = prompt("Сколько в месяц вы на этом зарабатываете?");
+      } while (!isNumber(cashIncome));
+      appData.income[itemIncome] = cashIncome;
+    }
+
+    for (let key in appData.income) {
+      appData.incomeMonth += +appData.income[key];
+    }
+  },
   getAddExpenses: function () {
     let addExpenses = additionalExpensesInput.value.split(",");
     addExpenses.forEach(function (item) {
@@ -156,27 +155,6 @@ let appData = {
         appData.addIncome.push(itemValue);
       }
     });
-  },
-  asking: function () {
-    if (confirm("Есть ли у вас дополнительный источник заработка?")) {
-      let itemIncome;
-      do {
-        itemIncome = prompt(
-          "Какой у вас дополнительный заработок?",
-          "Cторонние проекты"
-        );
-      } while (!!isString(itemIncome));
-      let cashIncome;
-      do {
-        cashIncome = prompt("Сколько в месяц вы на этом зарабатываете?");
-      } while (!isNumber(cashIncome));
-      appData.income[itemIncome] = cashIncome;
-    }
-
-    let addExpenses = prompt("Перечислите возможные расходы через запятую?");
-    appData.addExpenses = addExpenses.toLowerCase().split(",");
-    appData.deposit = confirm("Есть ли у Вас депозит в банке");
-    appData.getInfoDeposit();
   },
   getInfoDeposit: function () {
     if (appData.deposit) {
