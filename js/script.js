@@ -83,6 +83,7 @@ let appData = {
     appData.budget = +incomeMonthInput.value;
     console.log("incomeMonthInput.value: ", incomeMonthInput.value);
 
+    appData.getIncome();
     appData.getExpenses();
     appData.getIncome();
     appData.getExpensesMonth();
@@ -130,24 +131,13 @@ let appData = {
     }
   },
   getIncome: function () {
-    if (confirm("Есть ли у вас дополнительный источник заработка?")) {
-      let itemIncome;
-      do {
-        itemIncome = prompt(
-          "Какой у вас дополнительный заработок?",
-          "Cторонние проекты"
-        );
-      } while (!!isString(itemIncome));
-      let cashIncome;
-      do {
-        cashIncome = prompt("Сколько в месяц вы на этом зарабатываете?");
-      } while (!isNumber(cashIncome));
-      appData.income[itemIncome] = cashIncome;
-    }
-
-    for (let key in appData.income) {
-      appData.incomeMonth += +appData.income[key];
-    }
+    incomeItems.forEach(function (item) {
+      let itemIncomes = item.querySelector(".income-title").value,
+        cashIncomes = item.querySelector(".income-amount").value;
+      if (itemIncomes !== "" && cashIncomes !== "") {
+        appData.income[itemIncomes] = +cashIncomes;
+      }
+    });
   },
   getAddExpenses: function () {
     let addExpenses = additionalExpensesInput.value.split(",");
