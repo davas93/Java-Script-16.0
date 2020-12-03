@@ -175,7 +175,7 @@ let appData = {
   getPeriod: function (e) {
     periodNum.textContent = e.target.value;
   },
-  getInfoDeposit: function () {
+  /*  getInfoDeposit: function () {
     if (appData.deposit) {
       do {
         appData.persentDeposit = prompt("Какой годовой процент?");
@@ -184,7 +184,7 @@ let appData = {
         appData.moneyDeposit = prompt("Какая сумма заложена");
       } while (!isNumber(this.moneyDeposit));
     }
-  },
+  }, */
   calcSavedMoney: function () {
     return appData.budgetMonth * periodSelect.value;
   },
