@@ -29,12 +29,27 @@ let calculateBtn = document.getElementById("start"),
   periodNum = document.querySelector(".period-amount"),
   incomeItem = document.querySelectorAll(".income-items");
 
-let isNumber = function (n) {
+calculateBtn.setAttribute("disabled", "true");
+calculateBtn.style.opacity = "0.5";
+
+let checkInput = function (e) {
+  if (incomeMonthInput.value !== "") {
+    calculateBtn.removeAttribute("disabled");
+    calculateBtn.style.opacity = "1";
+  } else {
+    calculateBtn.setAttribute("disabled", "true");
+    calculateBtn.style.opacity = "0.5";
+  }
+};
+
+incomeMonthInput.addEventListener("keyup", checkInput);
+
+/* let isNumber = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   },
   isString = function (n) {
     return !isNaN(!parseFloat(n)) && isFinite(n);
-  };
+  }; */
 
 let appData = {
   budget: 0,
