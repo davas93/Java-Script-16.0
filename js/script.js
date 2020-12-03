@@ -32,6 +32,7 @@ let calculateBtn = document.getElementById("start"),
 calculateBtn.setAttribute("disabled", "true");
 calculateBtn.style.opacity = "0.5";
 
+//Деактивация кнопки
 let checkInput = function (e) {
   if (incomeMonthInput.value !== "") {
     calculateBtn.removeAttribute("disabled");
@@ -41,7 +42,6 @@ let checkInput = function (e) {
     calculateBtn.style.opacity = "0.5";
   }
 };
-
 incomeMonthInput.addEventListener("keyup", checkInput);
 
 /* let isNumber = function (n) {
