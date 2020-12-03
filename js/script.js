@@ -115,12 +115,14 @@ let appData = {
     appData.getBudget();
     appData.getTargetMonth();
     appData.getStatusIncome();
+    appData.getAddExpenses();
     appData.showResult();
   },
   showResult: function () {
     budgetMonthValue.value = appData.budgetMonth;
     budgetDayValue.value = appData.budgetDay;
     expensesMonthValue.value = appData.expensesMonth;
+    additionalExpensesValue.value = appData.addExpenses.join(", ");
   },
   addExpensesBlock: function () {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
@@ -137,6 +139,15 @@ let appData = {
         cashExpenses = item.querySelector(".expenses-amount").value;
       if (itemExpenses !== "" && cashExpenses !== "") {
         appData.expenses[itemExpenses] = +cashExpenses;
+      }
+    });
+  },
+  getAddExpenses: function () {
+    let addExpenses = additionalExpensesInput.value.split(",");
+    addExpenses.forEach(function (item) {
+      item = item.trim();
+      if (item !== "") {
+        appData.addExpenses.push(item);
       }
     });
   },
