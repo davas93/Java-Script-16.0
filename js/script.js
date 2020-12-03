@@ -58,7 +58,7 @@ let appData = {
   getBudget: function () {
     appData.budgetMonth =
       appData.budget + appData.incomeMonth - appData.expensesMonth;
-    appData.budgetDay = Math.floor(appData.budgetMonth / 30);
+    appData.budgetDay = appData.budgetMonth / 30;
   },
   getTargetMonth: function () {
     return targetAmountInput.value / appData.budgetMonth;
@@ -96,7 +96,7 @@ let appData = {
   },
   showResult: function () {
     budgetMonthValue.value = appData.budgetMonth;
-    budgetDayValue.value = appData.budgetDay;
+    budgetDayValue.value = Math.floor(appData.budgetDay);
     expensesMonthValue.value = appData.expensesMonth;
     additionalExpensesValue.value = appData.addExpenses.join(", ");
     additionalIncomeValue.value = appData.addIncome.join(", ");
@@ -156,6 +156,9 @@ let appData = {
       }
     });
   },
+  getPeriod: function (e) {
+    periodNum.textContent = e.target.value;
+  },
   getInfoDeposit: function () {
     if (appData.deposit) {
       do {
@@ -176,19 +179,20 @@ let getUpperCase = function () {};
 calculateBtn.addEventListener("click", appData.start);
 expensesAddBtn.addEventListener("click", appData.addExpensesBlock);
 incomeAddBtn.addEventListener("click", appData.addIncomeBlock);
+periodSelect.addEventListener("change", appData.getPeriod);
 
-console.log(
+/* console.log(
   appData.addExpenses.join(", ").replace(/(^|\s)\S/g, function (a) {
     return a.toUpperCase();
   })
 );
-console.log(appData.getTargetMonth());
+console.log(appData.getTargetMonth()); */
 
-for (let key in appData) {
+/* for (let key in appData) {
   console.log(
     "Наша программа включает в себя данные: " + key + " " + appData[key]
   );
-}
+} */
 
 /* console.log(
   appData.persentDeposit,
