@@ -128,7 +128,7 @@ let appData = {
     additionalIncomeValue.value = appData.addIncome.join(", ");
     targetMonthValue.value = Math.ceil(appData.getTargetMonth());
     incomePeriodValue.value = appData.calcSavedMoney();
-    periodSelect.addEventListener("change", appData.showResult);
+    periodSelect.addEventListener("input", appData.showResult);
   },
   addExpensesBlock: function () {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
