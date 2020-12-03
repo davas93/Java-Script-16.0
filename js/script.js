@@ -82,12 +82,7 @@ let appData = {
     appData.budgetDay = Math.floor(appData.budgetMonth / 30);
   },
   getTargetMonth: function () {
-    let target = appData.mission / appData.budgetMonth;
-    if (target < 0) {
-      return "Цель не будет достигнута";
-    } else {
-      return "Цель будет достигнута за " + Math.ceil(target) + " месяцев(-а)";
-    }
+    return targetAmountInput.value / appData.budgetMonth;
   },
   getStatusIncome: function () {
     if (appData.budgetDay <= 0) {
@@ -125,6 +120,7 @@ let appData = {
     expensesMonthValue.value = appData.expensesMonth;
     additionalExpensesValue.value = appData.addExpenses.join(", ");
     additionalIncomeValue.value = appData.addIncome.join(", ");
+    targetMonthValue.value = Math.ceil(appData.getTargetMonth());
   },
   addExpensesBlock: function () {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
