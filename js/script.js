@@ -71,7 +71,6 @@ let appData = {
   persentDeposit: 0,
   moneyDeposit: 0,
   mission: 200000,
-  period: 5,
   getExpensesMonth: function () {
     for (let key in appData.expenses) {
       appData.expensesMonth += appData.expenses[key];
@@ -121,6 +120,7 @@ let appData = {
     additionalExpensesValue.value = appData.addExpenses.join(", ");
     additionalIncomeValue.value = appData.addIncome.join(", ");
     targetMonthValue.value = Math.ceil(appData.getTargetMonth());
+    incomePeriodValue.value = appData.calcSavedMoney();
   },
   addExpensesBlock: function () {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
@@ -189,7 +189,7 @@ let appData = {
     }
   },
   calcSavedMoney: function () {
-    return appData.budgetMonth * appData.period;
+    return appData.budgetMonth * periodSelect.value;
   },
 };
 
