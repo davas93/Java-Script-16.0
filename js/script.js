@@ -111,11 +111,10 @@ let appData = {
 
     appData.getExpenses();
 
-    /* appData.asking();
     appData.getExpensesMonth();
     appData.getBudget();
     appData.getTargetMonth();
-    appData.getStatusIncome(); */
+    appData.getStatusIncome();
   },
   addExpensesBlock: function () {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
@@ -131,7 +130,7 @@ let appData = {
       let itemExpenses = item.querySelector(".expenses-title").value,
         cashExpenses = item.querySelector(".expenses-amount").value;
       if (itemExpenses !== "" && cashExpenses !== "") {
-        appData.expenses[itemExpenses] = cashExpenses;
+        appData.expenses[itemExpenses] = +cashExpenses;
       }
     });
   },
@@ -155,17 +154,6 @@ let appData = {
     appData.addExpenses = addExpenses.toLowerCase().split(",");
     appData.deposit = confirm("Есть ли у Вас депозит в банке");
     appData.getInfoDeposit();
-    for (let i = 0; i < 2; i++) {
-      let currentExpenseName;
-      do {
-        currentExpenseName = prompt("Введите обязательную статью расходов");
-      } while (!!isString(currentExpenseName));
-      let expenseValue;
-      do {
-        expenseValue = prompt("Во сколко это обойдется?");
-      } while (!isNumber(expenseValue));
-      appData.expenses[currentExpenseName] = parseFloat(expenseValue);
-    }
   },
   getInfoDeposit: function () {
     if (appData.deposit) {
