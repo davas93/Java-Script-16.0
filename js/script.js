@@ -101,10 +101,6 @@ let appData = {
     }
   },
   start: function () {
-    if (incomeMonthInput.value === "") {
-      alert("Ошибка: Поле должно быть заполнено!");
-      return;
-    }
 
     appData.budget = +incomeMonthInput.value;
     console.log("incomeMonthInput.value: ", incomeMonthInput.value);
