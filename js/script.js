@@ -1,6 +1,7 @@
 "use strict";
 
 let calculateBtn = document.getElementById("start"),
+  resetBtn = document.querySelector("#cancel"),
   incomeAddBtn = document.getElementsByTagName("button")[0],
   expensesAddBtn = document.getElementsByTagName("button")[1],
   depositCheck = document.querySelector("#deposit-check"),
@@ -113,6 +114,7 @@ let appData = {
     appData.getAddIncome();
     appData.getBudget();
     appData.showResult();
+    appData.blockInputs();
   },
   showResult: function () {
     budgetMonthValue.value = appData.budgetMonth;
@@ -197,6 +199,15 @@ let appData = {
   calcSavedMoney: function () {
     return appData.budgetMonth * periodSelect.value;
   },
+  blockInputs: function () {
+    let textInputs = document.querySelectorAll(".data [type = text]");
+    textInputs.forEach(function (item) {
+      item.setAttribute("disabled", "true");
+    });
+    calculateBtn.style.display = "none";
+    resetBtn.style.display = "inline-block";
+  },
+  reset: function () {},
 };
 
 let getUpperCase = function () {};
