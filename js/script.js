@@ -101,9 +101,7 @@ let appData = {
     }
   },
   start: function () {
-
     appData.budget = +incomeMonthInput.value;
-    console.log("incomeMonthInput.value: ", incomeMonthInput.value);
 
     appData.getIncome();
     appData.getExpenses();
