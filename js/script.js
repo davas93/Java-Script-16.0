@@ -207,11 +207,46 @@ let appData = {
     calculateBtn.style.display = "none";
     resetBtn.style.display = "inline-block";
   },
-  reset: function () {},
+  reset: function () {
+    let incomeItems = document.querySelectorAll(".income-items"),
+      expensesItems = document.querySelectorAll(".expenses-items");
+
+    incomeItems.forEach(function (item, i) {
+      if (i !== 0) {
+        item.remove();
+      }
+    });
+
+    expensesItems.forEach(function (item, i) {
+      if (i !== 0) {
+        item.remove();
+      }
+    });
+
+    incomeAddBtn.style.display = "inline-block";
+    expensesAddBtn.style.display = "inline-block";
+
+    let textInputs = document.querySelectorAll(".data [type = text]");
+    textInputs.forEach(function (item) {
+      item.removeAttribute("disabled");
+    });
+
+    let allInputs = document.querySelectorAll("input");
+    allInputs.forEach(function (item) {
+      periodSelect.removeEventListener("input", appData.showResult);
+      item.value = "";
+      periodSelect.value = "1";
+      periodNum.textContent = "0";
+    });
+    resetBtn.style.display = "none";
+    calculateBtn.style.display = "inline-block";
+    calculateBtn.setAttribute("disabled", "true");
+    calculateBtn.style.opacity = "0.5";
+  },
 };
 
-let getUpperCase = function () {};
 calculateBtn.addEventListener("click", appData.start.bind(appData));
+resetBtn.addEventListener("click", appData.reset.bind(appData));
 expensesAddBtn.addEventListener(
   "click",
   appData.addExpensesBlock.bind(appData)
