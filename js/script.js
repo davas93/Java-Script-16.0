@@ -200,11 +200,13 @@ let appData = {
 };
 
 let getUpperCase = function () {};
-
-calculateBtn.addEventListener("click", appData.start);
-expensesAddBtn.addEventListener("click", appData.addExpensesBlock);
-incomeAddBtn.addEventListener("click", appData.addIncomeBlock);
-periodSelect.addEventListener("input", appData.getPeriod);
+calculateBtn.addEventListener("click", appData.start.bind(appData));
+expensesAddBtn.addEventListener(
+  "click",
+  appData.addExpensesBlock.bind(appData)
+);
+incomeAddBtn.addEventListener("click", appData.addIncomeBlock.bind(appData));
+periodSelect.addEventListener("input", appData.getPeriod.bind(appData));
 
 /* console.log(
   appData.addExpenses.join(", ").replace(/(^|\s)\S/g, function (a) {
