@@ -210,7 +210,7 @@ let getUpperCase = function () {};
 calculateBtn.addEventListener("click", appData.start);
 expensesAddBtn.addEventListener("click", appData.addExpensesBlock);
 incomeAddBtn.addEventListener("click", appData.addIncomeBlock);
-periodSelect.addEventListener("change", appData.getPeriod);
+periodSelect.addEventListener("input", appData.getPeriod);
 
 /* console.log(
   appData.addExpenses.join(", ").replace(/(^|\s)\S/g, function (a) {
