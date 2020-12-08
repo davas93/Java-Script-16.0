@@ -213,6 +213,11 @@ let appData = {
     });
     calculateBtn.style.display = "none";
     resetBtn.style.display = "inline-block";
+
+    incomeAddBtn.setAttribute("disabled", "true");
+    expensesAddBtn.setAttribute("disabled", "true");
+    incomeAddBtn.style.opacity = "0.3";
+    expensesAddBtn.style.opacity = "0.3";
   },
   reset: function () {
     let incomeItems = document.querySelectorAll(".income-items"),
@@ -232,6 +237,10 @@ let appData = {
 
     incomeAddBtn.style.display = "inline-block";
     expensesAddBtn.style.display = "inline-block";
+    incomeAddBtn.removeAttribute("disabled");
+    expensesAddBtn.removeAttribute("disabled");
+    incomeAddBtn.style.opacity = "1";
+    expensesAddBtn.style.opacity = "1";
 
     let textInputs = document.querySelectorAll(".data [type = text]");
     textInputs.forEach(function (item) {
@@ -249,6 +258,16 @@ let appData = {
     calculateBtn.style.display = "inline-block";
     calculateBtn.setAttribute("disabled", "true");
     calculateBtn.style.opacity = "0.5";
+
+    appData.budget = 0;
+    appData.budgetDay = 0;
+    appData.budgetMonth = 0;
+    appData.expensesMonth = 0;
+    appData.income = {};
+    appData.incomeMonth = 0;
+    appData.addIncome = [];
+    appData.expenses = {};
+    appData.addExpenses = [];
   },
 };
 
