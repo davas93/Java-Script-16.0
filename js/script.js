@@ -263,20 +263,20 @@ AppData.prototype.getPeriod = function (e) {
 AppData.prototype.calcSavedMoney = function () {
   return this.budgetMonth * periodSelect.value;
 };
+AppData.prototype.eventListeners = function () {
+  const _this = this;
+  calculateBtn.addEventListener("click", _this.start.bind(_this));
+  expensesAddBtn.addEventListener("click", _this.addExpensesBlock.bind(_this));
+  incomeAddBtn.addEventListener("click", _this.addIncomeBlock.bind(_this));
+  periodSelect.addEventListener("input", _this.getPeriod.bind(_this));
+  resetBtn.addEventListener("click", _this.reset.bind(_this));
+};
 
 const appData = new AppData();
 console.log(appData);
-
+appData.eventListeners();
 appData.inputNumDisable();
 appData.inputOnlyRus();
-calculateBtn.addEventListener("click", appData.start.bind(appData));
-expensesAddBtn.addEventListener(
-  "click",
-  appData.addExpensesBlock.bind(appData)
-);
-incomeAddBtn.addEventListener("click", appData.addIncomeBlock.bind(appData));
-periodSelect.addEventListener("input", appData.getPeriod.bind(appData));
-resetBtn.addEventListener("click", appData.reset.bind(appData));
 
 /* console.log(
   appData.addExpenses.join(", ").replace(/(^|\s)\S/g, function (a) {
