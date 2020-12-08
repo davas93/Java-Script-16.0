@@ -73,6 +73,8 @@ let appData = {
       let inputs = document.querySelectorAll("[type=text]");
       resetBtn.style = "display: block";
       calculateBtn.style = "display: none";
+      expensesAddBtn.setAttribute("disabled", "disabled");
+      incomeAddBtn.setAttribute("disabled", "disabled");
       inputs.forEach(function (item) {
         item.setAttribute("disabled", "disabled");
       });
@@ -129,11 +131,16 @@ let appData = {
     calculateBtn.style.display = "block";
     expensesAddBtn.style.display = "block";
     incomeAddBtn.style.display = "block";
+    expensesAddBtn.removeAttribute("disabled", "disabled");
+    incomeAddBtn.removeAttribute("disabled", "disabled");
 
     inputs.forEach(function (item) {
       item.value = "";
       item.removeAttribute("disabled", "disabled");
     });
+
+    calculateBtn.setAttribute("disabled", "true");
+    calculateBtn.style.opacity = "0.5";
   },
   inputNumDisable: function () {
     let inputsSum = document.querySelectorAll("[placeholder = 'Сумма']");
@@ -159,7 +166,9 @@ let appData = {
     additionalIncomeValue.value = this.addIncome.join(", ");
     targetMonthValue.value = Math.ceil(this.getTargetMonth());
     incomePeriodValue.value = this.calcSavedMoney();
-    periodSelect.addEventListener("input", appData.showResult);
+    periodSelect.addEventListener("input", function () {
+      incomePeriodValue.value = appData.calcSavedMoney();
+    });
   },
   getExpensesMonth: function () {
     for (let key in appData.expenses) {
