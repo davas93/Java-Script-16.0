@@ -1,6 +1,6 @@
 "use strict";
 
-let calculateBtn = document.getElementById("start"),
+const calculateBtn = document.getElementById("start"),
   resetBtn = document.querySelector("#cancel"),
   incomeAddBtn = document.getElementsByTagName("button")[0],
   expensesAddBtn = document.getElementsByTagName("button")[1],
@@ -21,10 +21,12 @@ let calculateBtn = document.getElementById("start"),
   budgetMonthValue = document.querySelector(".budget_month-value"),
   incomeMonthInput = document.querySelector(".salary-amount"),
   incomeNameInput = document.querySelector(".income-title"),
-  expensesNameInput = document.querySelector(".expenses-title"),
-  incomeItems = document.querySelectorAll(".income-items"),
-  expensesItems = document.querySelectorAll(".expenses-items"),
-  additionalExpensesInput = document.querySelector(".additional_expenses-item"),
+  expensesNameInput = document.querySelector(".expenses-title");
+let incomeItems = document.querySelectorAll(".income-items"),
+  expensesItems = document.querySelectorAll(".expenses-items");
+const additionalExpensesInput = document.querySelector(
+    ".additional_expenses-item"
+  ),
   targetAmountInput = document.querySelector(".target-amount"),
   periodSelect = document.querySelector(".period-select"),
   periodNum = document.querySelector(".period-amount"),
@@ -34,7 +36,7 @@ calculateBtn.setAttribute("disabled", "true");
 calculateBtn.style.opacity = "0.5";
 
 //Деактивация кнопки
-const checkInput = function (e) {
+const checkInput = (e) => {
   if (incomeMonthInput.value !== "") {
     calculateBtn.removeAttribute("disabled");
     calculateBtn.style.opacity = "1";
@@ -75,7 +77,7 @@ class AppData {
       calculateBtn.style = "display: none";
       expensesAddBtn.setAttribute("disabled", "disabled");
       incomeAddBtn.setAttribute("disabled", "disabled");
-      inputs.forEach(function (item) {
+      inputs.forEach((item) => {
         item.setAttribute("disabled", "disabled");
       });
 
@@ -116,13 +118,13 @@ class AppData {
     periodNum.textContent = periodSelect.value;
     targetMonthValue.value = 0;
 
-    incomeItems.forEach(function (item, i) {
+    incomeItems.forEach((item, i) => {
       if (i !== 0) {
         item.remove();
       }
     });
 
-    expensesItems.forEach(function (item, i) {
+    expensesItems.forEach((item, i) => {
       if (i !== 0) {
         item.remove();
       }
@@ -135,7 +137,7 @@ class AppData {
     expensesAddBtn.removeAttribute("disabled", "disabled");
     incomeAddBtn.removeAttribute("disabled", "disabled");
 
-    inputs.forEach(function (item) {
+    inputs.forEach((item) => {
       item.value = "";
       item.removeAttribute("disabled", "disabled");
     });
@@ -146,7 +148,7 @@ class AppData {
 
   inputNumDisable() {
     const inputsSum = document.querySelectorAll("[placeholder = 'Сумма']");
-    inputsSum.forEach(function (item) {
+    inputsSum.forEach((item) => {
       item.oninput = (e) =>
         (e.target.value = e.target.value.replace(/\D/g, ""));
     });
@@ -156,7 +158,7 @@ class AppData {
     const inputsName = document.querySelectorAll(
       "[placeholder = 'Наименование']"
     );
-    inputsName.forEach(function (item) {
+    inputsName.forEach((item) => {
       item.oninput = (e) =>
         (e.target.value = e.target.value.replace(/[^а-я^,^ ]/g, ""));
     });
@@ -171,7 +173,7 @@ class AppData {
     additionalIncomeValue.value = this.addIncome.join(", ");
     targetMonthValue.value = Math.ceil(this.getTargetMonth());
     incomePeriodValue.value = this.calcSavedMoney();
-    periodSelect.addEventListener("input", function () {
+    periodSelect.addEventListener("input", () => {
       incomePeriodValue.value = _this.calcSavedMoney();
     });
   }
@@ -223,7 +225,7 @@ class AppData {
 
   getExpenses() {
     const _this = this;
-    expensesItems.forEach(function (item) {
+    expensesItems.forEach((item) => {
       const itemExpenses = item.querySelector(".expenses-title").value,
         cashExpenses = item.querySelector(".expenses-amount").value;
       if (itemExpenses !== "" && cashExpenses !== "") {
@@ -246,7 +248,7 @@ class AppData {
 
   getIncome() {
     const _this = this;
-    incomeItems.forEach(function (item) {
+    incomeItems.forEach((item) => {
       const itemIncomes = item.querySelector(".income-title").value,
         cashIncomes = item.querySelector(".income-amount").value;
       if (itemIncomes !== "" && cashIncomes !== "") {
@@ -258,7 +260,7 @@ class AppData {
   getAddExpenses() {
     const _this = this;
     const addExpenses = additionalExpensesInput.value.split(",");
-    addExpenses.forEach(function (item) {
+    addExpenses.forEach((item) => {
       item = item.trim();
       if (item !== "") {
         _this.addExpenses.push(item);
@@ -268,7 +270,7 @@ class AppData {
 
   getAddIncome() {
     const _this = this;
-    incomeInputs.forEach(function (item) {
+    incomeInputs.forEach((item) => {
       const itemValue = item.value.trim();
       if (itemValue !== "") {
         _this.addIncome.push(itemValue);
