@@ -82,11 +82,7 @@ class AppData {
       });
 
       this.budget = +incomeMonthInput.value;
-      this.getIncome();
-      this.getExpenses();
-      this.getIncome();
-      this.getExpensesMonth();
-      this.getIncomeMonth();
+      this.getExpInc();
       this.getTargetMonth();
       this.getStatusIncome();
       this.getAddExpenses();
@@ -178,18 +174,6 @@ class AppData {
     });
   }
 
-  getExpensesMonth() {
-    for (const key in this.expenses) {
-      this.expensesMonth += this.expenses[key];
-    }
-  }
-
-  getIncomeMonth() {
-    for (const key in this.income) {
-      this.incomeMonth += this.income[key];
-    }
-  }
-
   getBudget() {
     this.budgetMonth = this.budget + this.incomeMonth - this.expensesMonth;
     this.budgetDay = this.budgetMonth / 30;
@@ -223,15 +207,26 @@ class AppData {
     }
   }
 
-  getExpenses() {
-    const _this = this;
-    expensesItems.forEach((item) => {
-      const itemExpenses = item.querySelector(".expenses-title").value,
-        cashExpenses = item.querySelector(".expenses-amount").value;
-      if (itemExpenses !== "" && cashExpenses !== "") {
-        _this.expenses[itemExpenses] = +cashExpenses;
+  getExpInc() {
+    const count = (item) => {
+      const startStr = item.className.split("-")[0];
+      const itemTitle = item.querySelector(`.${startStr}-title`).value;
+      const itemAmount = item.querySelector(`.${startStr}-amount`).value;
+      if (itemTitle !== "" && itemAmount !== "") {
+        this[startStr][itemTitle] = +itemAmount;
       }
-    });
+    };
+
+    incomeItems.forEach(count);
+    expensesItems.forEach(count);
+
+    for (let key in this.income) {
+      this.incomeMonth += this.income[key];
+    }
+
+    for (let key in this.expenses) {
+      this.expensesMonth += this.expenses[key];
+    }
   }
 
   addIncomeBlock() {
@@ -244,17 +239,6 @@ class AppData {
     if (incomeItems.length === 3) {
       incomeAddBtn.style.display = "none";
     }
-  }
-
-  getIncome() {
-    const _this = this;
-    incomeItems.forEach((item) => {
-      const itemIncomes = item.querySelector(".income-title").value,
-        cashIncomes = item.querySelector(".income-amount").value;
-      if (itemIncomes !== "" && cashIncomes !== "") {
-        _this.income[itemIncomes] = +cashIncomes;
-      }
-    });
   }
 
   getAddExpenses() {
