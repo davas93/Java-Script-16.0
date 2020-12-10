@@ -155,6 +155,8 @@ class AppData {
 		depositAmount.value = '';
 		depositPercent.value = '';
 		depositCheck.checked = false;
+		depositPercent.style.color = '#353a43';
+		depositPercent.style.borderColor = '#ff7f63';
 	}
 
 	inputNumDisable() {
