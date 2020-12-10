@@ -147,6 +147,14 @@ class AppData {
 
 		calculateBtn.setAttribute('disabled', 'true');
 		calculateBtn.style.opacity = '0.5';
+
+		depositBank.style.display = 'none';
+		depositAmount.style.display = 'none';
+		depositPercent.style.display = 'none';
+		depositBank.value = '';
+		depositAmount.value = '';
+		depositPercent.value = '';
+		depositCheck.checked = false;
 	}
 
 	inputNumDisable() {
@@ -291,8 +299,10 @@ class AppData {
 	changePercent() {
 		const valueSelect = this.value;
 		if (valueSelect === 'other') {
-			//ДЗ
+			depositPercent.value = '';
+			depositPercent.style.display = 'inline-block';
 		} else {
+			depositPercent.style.display = 'none';
 			depositPercent.value = valueSelect;
 		}
 	}
