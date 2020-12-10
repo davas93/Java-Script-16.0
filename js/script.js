@@ -307,12 +307,27 @@ class AppData {
 		}
 	}
 
+	incorrectInput() {
+		if (depositPercent.value < 0 || depositPercent.value > 100) {
+			calculateBtn.setAttribute('disabled', 'true');
+			calculateBtn.style.opacity = '0.5';
+			depositPercent.style.color = 'red';
+			depositPercent.style.borderColor = 'red';
+		} else {
+			depositPercent.style.color = '#353a43';
+			depositPercent.style.borderColor = '#ff7f63';
+			calculateBtn.removeAttribute('disabled');
+			calculateBtn.style.opacity = '1';
+		}
+	}
+
 	depositHandler() {
 		if (depositCheck.checked) {
 			depositBank.style.display = 'inline-block';
 			depositAmount.style.display = 'inline-block';
 			this.deposit = true;
 			depositBank.addEventListener('change', this.changePercent);
+			depositPercent.addEventListener('input', this.incorrectInput);
 		} else {
 			depositBank.style.display = 'none';
 			depositAmount.style.display = 'none';
@@ -320,6 +335,9 @@ class AppData {
 			depositAmount.value = '';
 			this.deposit = false;
 			depositBank.removeEventListener('change', this.changePercent);
+			depositPercent.removeEventListener('input', this.incorrectInput);
+			depositPercent.style.display = 'none';
+			depositPercent.style.borderColor = '#ff7f63';
 		}
 	}
 
