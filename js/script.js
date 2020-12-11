@@ -310,16 +310,14 @@ class AppData {
 	}
 
 	incorrectInput() {
-		if (depositPercent.value < 0 || depositPercent.value > 100) {
-			calculateBtn.setAttribute('disabled', 'true');
-			calculateBtn.style.opacity = '0.5';
-			depositPercent.style.color = 'red';
-			depositPercent.style.borderColor = 'red';
-		} else {
-			depositPercent.style.color = '#353a43';
-			depositPercent.style.borderColor = '#ff7f63';
-			calculateBtn.removeAttribute('disabled');
+		if (depositPercent.value >= 0 && depositPercent.value <= 100) {
+			calculateBtn.disabled = false;
 			calculateBtn.style.opacity = '1';
+		} else {
+			calculateBtn.disabled = true;
+			calculateBtn.style.opacity = '0.5';
+			alert('Введите корректное значение в поле "Проценты"');
+			depositPercent.value = '';
 		}
 	}
 
